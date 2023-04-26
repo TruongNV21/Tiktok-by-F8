@@ -1,0 +1,23 @@
+.menu-list {
+    width: 224px;
+    background-color: rgb(37, 37, 37);
+    border-radius: 8px;
+
+    .menu-wrapper {
+        padding: 10px 0;
+    }
+
+    .menu-item {
+        margin-left: 0 !important;
+        justify-content: start;
+        font-size: 1.6rem;
+        font-weight: 500;
+        border-radius: 0;
+        line-height: 22px;
+        padding: 10px 8px 10px 16px;
+        background-color: transparent;
+        &:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+    }
+}

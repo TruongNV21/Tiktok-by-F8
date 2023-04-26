@@ -1,0 +1,28 @@
+.wrapper{
+    width: 100%;
+    max-height: min((100vh - 96px) - 60px, 734px);
+    background: rgb(37, 37, 37);
+    border-radius: 8px;
+    overflow: hidden auto;
+    list-style-type: none;
+    color: var(--white-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.search-heading{
+    font-size: 2.0rem;
+    padding: 5px 12px;
+}
+
+::-webkit-scrollbar{
+    width: 6px;
+}
+::-webkit-scrollbar-track{
+    background: rgb(37, 37, 37);
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #787878;
+    border-radius: 8px;
+}

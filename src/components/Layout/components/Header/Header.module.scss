@@ -1,0 +1,123 @@
+.wrapper {
+    height: 60px;
+    box-shadow: 0 1px 1px rgba(0 0 0 / 12%);
+    background-color: var(--bg-color);
+}
+
+.inner {
+    height: 100%;
+    padding: 0 24px 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-form {
+    display: flex;
+    height: 46px;
+    width: 415px;
+    border-radius: 92px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.12);
+    align-items: center;
+
+    input {
+        height: 100%;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.6rem;
+        font-weight: 200;
+        line-height: 28px;
+        padding-left: 16px;
+        flex: 1;
+        text-rendering: auto;
+        caret-color: var(--primary-color)
+        
+    }
+
+    .search-result{
+        width: 415px;
+    }
+    
+    input:not(:placeholder-shown) ~ .search-btn{
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    input:placeholder-shown {
+        font-size: 1.6rem;
+        font-weight: 300;
+        color: var(--white-color);
+    }
+
+    .search-actions {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        button{
+            border: none;
+            outline: none;
+            background-color: transparent;
+            padding: 0 12px;
+            color: var(--white-color);
+            cursor: pointer;
+            font-size: 1.6rem;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%)
+        }
+
+    }
+
+    .separate {
+        height: 22px;
+        width: 1px;
+        background-color: rgba(255, 255, 255, 0.12);
+    }
+}
+
+.search-btn {
+    width: 52px;
+    height: 100%;
+    font-size: 2rem;
+    background-color: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.34);
+    transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.1s;
+    cursor: pointer;
+
+    &:hover{
+        background-color: rgba(255, 255, 255, .04);
+        color: rgba(255, 255, 255, 0.75);
+    }
+    
+    &:active{
+        background-color: rgba(255, 255, 255, .04);
+    }
+}
+
+.search-heading{
+    height: 30px;
+    font-size: 1.4rem;
+    padding: 5px 12px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.5);
+}
+.actions{
+    
+    .more-btn{
+        font-size: 1.4rem;
+        padding: 4px 8px;
+        margin-left: 16px;
+        background-color: transparent;
+        color: var(--white-color)
+    }
+}
+
+
+
+
