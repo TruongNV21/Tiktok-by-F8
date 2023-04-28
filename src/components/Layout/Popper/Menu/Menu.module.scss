@@ -21,3 +21,31 @@
         }
     }
 }
+
+//Header
+.header{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    cursor: default
+}
+
+.back-btn{
+    width: 50px;
+    height: 100%;
+    background-color:transparent;
+    cursor: pointer;
+    color: var(--white-color);
+    text-align: start;
+    margin-left: 12px;
+}
+
+.header-title{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: var(--white-color);
+    font-size: 1.8rem;
+    font-weight: 500;
+}

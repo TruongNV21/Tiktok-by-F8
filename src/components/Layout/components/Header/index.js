@@ -27,6 +27,22 @@ const MENU_LIST = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
         title: "English",
+        children: {
+            title: "Language",
+            data: [
+                {
+                    type: "language",
+                    code: "em",
+                    title: "English",
+                },
+                {
+                    type: "language",
+
+                    code: "vi",
+                    title: "VietNamese",
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -47,12 +63,16 @@ function Header() {
         }, 0);
     }, []);
 
+    function handleMenuChange(menuItem) {
+        console.log(menuItem);
+    }
+
     return (
         <header className={cx("wrapper")}>
             <div className={cx("inner")}>
                 <div className={cx("logo")}>
-                    <a className={cx("logoLink")} href="https://www.tiktok.com/@truongnvtb21">
-                        <img alt="Tiktok" src={images.logo}></img>
+                    <a className={cx("logo-link")} href="https://www.tiktok.com/@truongnvtb21">
+                        <img className={cx("logo-img")} alt="Tiktok" src={images.logo}></img>
                     </a>
                 </div>
                 <div className={cx("search")}>
@@ -95,7 +115,7 @@ function Header() {
                     <Button leftIcon={<FontAwesomeIcon icon={faUpload} />}>Upload</Button>
                     <Button primary>Log In</Button>
 
-                    <Menu items={MENU_LIST}>
+                    <Menu items={MENU_LIST} onChange={handleMenuChange}>
                         <button className={cx("more-btn")}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>

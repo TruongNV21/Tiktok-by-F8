@@ -10,6 +10,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .logo{
+        min-width: 300px;
+    }
+    
+    .logo-link{
+        display: inline-block;
+    }
+
+    .logo-img{
+        display: inline-block;
+        position: relative;
+        top: 6px;
+    }
 }
 
 .search-form {
@@ -114,7 +128,8 @@
         padding: 4px 8px;
         margin-left: 16px;
         background-color: transparent;
-        color: var(--white-color)
+        color: var(--white-color);
+        cursor: pointer;
     }
 }
 
