@@ -2,9 +2,16 @@
     width: 224px;
     background-color: rgb(37, 37, 37);
     border-radius: 8px;
+    position: relative;
 
     .menu-wrapper {
         padding: 10px 0;
+
+        .menu-body {
+            overflow-y: overlay;
+            display: flex;
+            flex-direction: column;
+        }
     }
 
     .menu-item {
@@ -19,32 +26,37 @@
         &:hover {
             background: rgba(255, 255, 255, 0.04);
         }
+        &.separate {
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
     }
 }
 
 //Header
-.header{
+.header {
     position: relative;
+    flex-shrink: 0;
     height: 50px;
     width: 100%;
-    cursor: default
+    background-color: inherit;
+    cursor: default;
 }
 
-.back-btn{
+.back-btn {
     width: 50px;
     height: 100%;
-    background-color:transparent;
+    background-color: transparent;
     cursor: pointer;
     color: var(--white-color);
     text-align: start;
     margin-left: 12px;
 }
 
-.header-title{
+.header-title {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     color: var(--white-color);
     font-size: 1.8rem;
     font-weight: 500;

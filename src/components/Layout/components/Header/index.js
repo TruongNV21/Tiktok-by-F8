@@ -1,25 +1,26 @@
-import { useState, useEffect } from "react";
 import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
-import images from "~/assets/images";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faMagnifyingGlass,
-    faXmark,
-    faSpinner,
-    faPlus,
-    faUpload,
     faEllipsisVertical,
     faEarthAsia,
     faCircleQuestion,
     faKeyboard,
+    faUser,
+    faGear,
+    faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
-import Tippy, { useSingleton } from "@tippyjs/react/headless";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 
-import { Wrapper as PopperWrapper } from "../../Popper";
-import AccountItem from "~/components/AccountItem";
+import images from "~/assets/images";
 import Button from "~/components/Button";
 import Menu from "../../Popper/Menu";
+import { InboxIcon, UploadIcon } from "~/components/Icons/Icons";
+import Image from "~/components/Image";
+import Search from "../Search";
+import routesConfig from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -30,6 +31,7 @@ const MENU_LIST = [
         children: {
             title: "Language",
             data: [
+                
                 {
                     type: "language",
                     code: "em",
@@ -40,7 +42,7 @@ const MENU_LIST = [
 
                     code: "vi",
                     title: "VietNamese",
-                },
+                }
             ],
         },
     },
@@ -56,69 +58,77 @@ const MENU_LIST = [
 ];
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        }, 0);
-    }, []);
+    const currentUser = true;
 
     function handleMenuChange(menuItem) {
-        console.log(menuItem);
+        // console.log(menuItem);
     }
+
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: "View Profile",
+            to: "/profile",
+        },
+        {
+            icon: <FontAwesomeIcon icon={faGear} />,
+            title: "Settings",
+            to: "/settings",
+        },
+        ...MENU_LIST,
+        {
+            icon: <FontAwesomeIcon icon={faSignOut} />,
+            title: "Log out",
+            to: "/profile",
+            separate: true,
+        },
+    ];
 
     return (
         <header className={cx("wrapper")}>
             <div className={cx("inner")}>
                 <div className={cx("logo")}>
-                    <a className={cx("logo-link")} href="https://www.tiktok.com/@truongnvtb21">
+                    <Link to={routesConfig.home} className={cx("logo-link")}>
                         <img className={cx("logo-img")} alt="Tiktok" src={images.logo}></img>
-                    </a>
+                    </Link>
                 </div>
-                <div className={cx("search")}>
-                    <form className={cx("search-form")}>
-                        <Tippy
-                            interactive={true}
-                            visible={searchResult.length > 0}
-                            placement="bottom-start"
-                            render={(attrs) => (
-                                <div className={cx("search-result")} tabIndex="-1" {...attrs}>
-                                    <PopperWrapper>
-                                        <h4 className={cx("search-heading")}>Account</h4>
-                                        <AccountItem />
-                                        <AccountItem />
-                                        <AccountItem />
-                                        <AccountItem />
-                                        <AccountItem />
-                                        <AccountItem />
-                                    </PopperWrapper>
-                                </div>
-                            )}
-                        >
-                            <input className={cx("search-input")} placeholder="Search" />
-                        </Tippy>
-                        <div className={cx("search-actions")}>
-                            <button className={cx("loading")}>
-                                <FontAwesomeIcon icon={faSpinner} />
-                            </button>
-                            <button className={cx("reset")}>
-                                <FontAwesomeIcon icon={faXmark} />
-                            </button>
-                        </div>
-                        <span className={cx("separate")}></span>
-                        <button className={cx("search-btn")}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </form>
-                </div>
-                <div className={cx("actions")}>
-                    <Button leftIcon={<FontAwesomeIcon icon={faUpload} />}>Upload</Button>
-                    <Button primary>Log In</Button>
 
-                    <Menu items={MENU_LIST} onChange={handleMenuChange}>
-                        <button className={cx("more-btn")}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
+                <Search />
+
+                <div className={cx("actions")}>
+                    {currentUser ? (
+                        <>
+                            <Tippy placement="bottom" content="Message" delay={[100, 300]}>
+                                <button className={cx("action-btn")}>
+                                    <UploadIcon className={cx("icon")} />
+                                </button>
+                            </Tippy>
+
+                            <Tippy placement="bottom" content="Notice" delay={[100, 300]}>
+                                <button className={cx("action-btn")}>
+                                    <InboxIcon className={cx("icon")} />
+                                </button>
+                            </Tippy>
+                        </>
+                    ) : (
+                        <>
+                            <Button leftIcon={<UploadIcon />}>Upload</Button>
+                            <Button primary>Log In</Button>
+                        </>
+                    )}
+
+                    <Menu items={currentUser ? userMenu : MENU_LIST} onChange={handleMenuChange}>
+                        {currentUser ? (
+                            <Image
+                                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/bd7679403ed8e02a1a751de53eae496d~c5_100x100.jpeg?x-expires=1683295200&x-signature=OmMvgPI9kuMr4x1LwxtbSa4kXfA%3D"
+                                className={cx("user-avatar")}
+                                alt="Nguyen Van Truong"
+                            />
+                        ) : (
+                            <button className={cx("more-btn")}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        )}
                     </Menu>
                 </div>
             </div>

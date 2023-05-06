@@ -1,6 +1,6 @@
 function Profile() {
     return ( 
-        <h1>Profile</h1>
+        <h1 style={{height: '2000px'}}>Profile</h1>
      );
 }
 
